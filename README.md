@@ -25,14 +25,10 @@ A Maquina estado criado foi:
       "Type": "Task",
       "Resource": "arn:aws:states:::bedrock:invokeModel",
       "Parameters": {
-        "ModelId": "us.meta.llama3-2-1b-instruct-v1:0",
+        "ModelId": "cohere.command-text-v14",
         "Body": {
-          "inputText": "Uma sugestão de comida para acompanhar um amigo",
-          "textGenerationConfig": {
-            "temperature": 0,
-            "topP": 1,
-            "maxTokenCount": 512
-          }
+          "prompt.$": "$.prompt_one",
+          "max_tokens": 250
         },
         "ContentType": "application/json",
         "Accept": "*/*"
@@ -55,7 +51,7 @@ A Maquina estado criado foi:
       "Type": "Task",
       "Resource": "arn:aws:states:::bedrock:invokeModel",
       "Parameters": {
-        "ModelId": "us.meta.llama3-2-1b-instruct-v1:0",
+        "ModelId": "cohere.command-text-v14",
         "Body": {
           "prompt.$": "States.Format('{}\n{}', $.convo_one.convo_one, $.prompt_two)",
           "max_tokens": 200
@@ -81,7 +77,7 @@ A Maquina estado criado foi:
       "Type": "Task",
       "Resource": "arn:aws:states:::bedrock:invokeModel",
       "Parameters": {
-        "ModelId": "us.meta.llama3-2-1b-instruct-v1:0",
+        "ModelId": "cohere.command-text-v14",
         "Body": {
           "prompt.$": "States.Format('{}\n{}', $.convo_two.convo_two, $.prompt_three)",
           "max_tokens": 250
